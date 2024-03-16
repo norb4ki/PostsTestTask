@@ -8,6 +8,7 @@ interface PostData {
     title: string,
     body: string
 }
+
 function MainPage() {
     let [postArray, setPostArray] = useState<PostData[]>([]);
 
@@ -23,8 +24,12 @@ function MainPage() {
 
     //console.log('Загруженные посты:', postArray);
     return (
-        <div>
-            {postArray.map(data => <Post body={data.body} title={data.title} userId={data.userId} id={data.id}/>)}
+        <div className={'grid grid-cols-4 gap-4 p-6 min-w-800'}>
+            {postArray.map(data =>
+                <Post body={data.body}
+                      title={data.title}
+                      userId={data.userId}
+                      id={data.id}/>)}
         </div>
     );
 }

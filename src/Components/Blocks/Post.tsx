@@ -13,10 +13,9 @@ type postProps ={
 
 function Post(props: postProps) {
     return (
-        <div className={'post'}>
-            <h1>{props.title}</h1>
-            <p>{props.body}</p>
-            <p>{props.id}</p>
+        <div className={'bg-[#578de3] rounded-lg'}>
+            <div className={'rounded-lg font-bold p-2.5 text-center bg-[#175ec4] text-[#ffffff]'}>{props.title}</div>
+            <div className={'text-[#ffffff] p-2.5'}>{props.body}</div>
         </div>
     );
 }
