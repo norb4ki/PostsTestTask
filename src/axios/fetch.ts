@@ -16,13 +16,14 @@ API_HTTPS_SERVICES.interceptors.request.use(
     }
 )
 
-async function fetchPosts() {
+async function getPosts() {
     try {
         const response = await API_HTTPS_SERVICES.get('/posts');
         return response.data;
     } catch (error) {
-        console.error('Ошибка при загрузке данных:', error);
+        console.error('Error occurred:', error);
         throw error;
     }
 }
-export default fetchPosts
+
+export default getPosts

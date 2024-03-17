@@ -1,31 +1,20 @@
-import React, {useEffect, useState} from 'react';
-import fetchPosts from '../../axios/fetch'
+import React from 'react';
+import getPosts from '../../axios/fetch'
 import Post from "../Blocks/Post";
+import {useLoaderData} from "react-router-dom";
+import {LoaderData, PostData} from "../../utils/interfaces";
 
-interface PostData {
-    userId: number,
-    id: number,
-    title: string,
-    body: string
+export async function loader(): Promise<LoaderData> {
+    const posts = await getPosts();
+    return { posts };
 }
 
 function MainPage() {
-    let [postArray, setPostArray] = useState<PostData[]>([]);
+    const { posts } = useLoaderData() as { posts: PostData[] };
 
-    useEffect(() => {
-        fetchPosts()
-            .then(posts => {
-                setPostArray(posts);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }, []);
-
-    //console.log('Загруженные посты:', postArray);
     return (
         <div className={'grid grid-cols-4 gap-4 p-6 min-w-800'}>
-            {postArray.map(data =>
+            {posts.map(data =>
                 <Post body={data.body}
                       title={data.title}
                       userId={data.userId}
