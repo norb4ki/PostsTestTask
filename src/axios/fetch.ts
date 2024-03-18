@@ -16,7 +16,7 @@ API_HTTPS_SERVICES.interceptors.request.use(
     }
 )
 
-async function getPosts() {
+export async function getPosts() {
     try {
         const response = await API_HTTPS_SERVICES.get('/posts');
         return response.data;
@@ -26,4 +26,12 @@ async function getPosts() {
     }
 }
 
-export default getPosts
+export async function getPost(id:string){
+    try {
+        const response = await API_HTTPS_SERVICES.get(`/posts/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error occurred:', error);
+        throw error;
+    }
+}

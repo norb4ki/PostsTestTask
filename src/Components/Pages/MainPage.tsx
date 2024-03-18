@@ -1,5 +1,5 @@
 import React from 'react';
-import getPosts from '../../axios/fetch'
+import {getPosts} from '../../axios/fetch'
 import Post from "../Blocks/Post";
 import {useLoaderData} from "react-router-dom";
 import {LoaderData, PostData} from "../../utils/interfaces";

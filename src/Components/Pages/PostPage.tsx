@@ -1,6 +1,15 @@
 import React from 'react';
-import {useLoaderData} from "react-router-dom";
+import {Params, useLoaderData} from "react-router-dom";
 import {PostData} from "../../utils/interfaces";
+import {getPost} from "../../axios/fetch";
+
+export async function loader({ params }: { params: Params<string> }): Promise<PostData> {
+    const postId = params.postId; // postId: string | undefined
+    if (postId === undefined) {
+        throw new Error('postId is undefined');
+    }
+    return await getPost(postId);
+}
 
 function PostPage() {
     const post = useLoaderData() as  PostData ;

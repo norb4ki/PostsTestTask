@@ -7,7 +7,8 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import ErrorPage from "./Components/Pages/ErrorPage";
 import PostPage from "./Components/Pages/PostPage";
 import {loader as rootLoader} from "./Components/Pages/MainPage";
-import getPost from "./axios/fetch";
+import {loader as postLoader} from "./Components/Pages/PostPage";
+import {getPost} from "./axios/fetch";
 import {PostData} from "./utils/interfaces";
 
 
@@ -21,14 +22,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/post/:postId",
-        loader: async ({params}) => {
-            const posts = await getPost();
-            const postId = parseInt(params.postId as string);
-            //console.log(posts[postId]);
-            return posts.find((obj: PostData) => {
-                return obj.id === postId;
-            });
-        },
+        loader: postLoader,
         element: <PostPage/>
     }
 ]);
